@@ -69,14 +69,22 @@ ties up.
 ## Tables and figures from the results
 
 ```bash
-python table1_dispersion.py 0.005:sim_coverage_nu0.005_merged_filled.csv:1000 \
-    0.02:sim_coverage_nu0.02_merged_filled.csv:1000 0.05:sim_coverage_main_discrete_final.csv:2000
+# Tables (printed to the console)
+python table1_dispersion.py \
+    0.005:sim_coverage_nu0.005_merged_filled.csv:1000 \
+    0.02:sim_coverage_nu0.02_merged_filled.csv:1000 \
+    0.05:sim_coverage_main_discrete_final.csv:2000
 python table2_partition.py
 python supp_tables.py
+
+# Figures 1-3 (written to figures/)
 python sim_bvm_figure.py --replot
 python plot_calibration.py
-python plot_interval_lengths.py      # figures are written to figures/
+python plot_interval_lengths.py
 ```
+
+Each argument to `table1_dispersion.py` is `nu:file:R`: the true dispersion,
+the result file for it, and the number of replications per cell.
 
 ## Rerunning the simulation study
 
@@ -132,3 +140,6 @@ python check_failed_proposals.py --chains 16 --steps 16000 --below 100 --n_jobs 
 
 Every script takes `--n_jobs` for parallel replications, and the long ones take
 `--reps` or `--rep-lo/--rep-hi` to split a run; results do not depend on either.
+
+## AI Disclosure
+Parts of this code were cleaned, documented and checked with the help of Claude (Anthropic). The authors reviewed all changes and are responsible for the code and results.
